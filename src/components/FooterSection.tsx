@@ -27,9 +27,8 @@ const FooterSection = () => {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="text-lg font-extrabold text-gradient-emerald">Synapse</span>
-            <span className="text-xs font-mono text-muted-foreground">Protocol</span>
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-extrabold text-gradient-emerald tracking-tight">SYNAPSE</span>
           </div>
           <p className="text-xs text-muted-foreground text-center sm:text-right">
             © 2026 Synapse Technologies Pvt. Ltd. Registered Startup India. All rights reserved.
