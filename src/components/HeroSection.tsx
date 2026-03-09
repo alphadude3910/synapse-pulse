@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PulseCanvas from "./PulseCanvas";
 import TerminalWindow from "./TerminalWindow";
 
@@ -50,12 +51,18 @@ const HeroSection = () => {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <button className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all duration-200 hover:shadow-[0_0_20px_hsl(var(--emerald)/0.3)]">
+              <Link
+                to="/developers"
+                className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all duration-200 hover:shadow-[0_0_20px_hsl(var(--emerald)/0.3)]"
+              >
                 Start Building
-              </button>
-              <button className="px-6 py-3 rounded-lg glass font-semibold text-sm text-foreground hover:border-emerald/40 transition-all duration-200">
+              </Link>
+              <Link
+                to="/docs"
+                className="px-6 py-3 rounded-lg glass font-semibold text-sm text-foreground hover:border-emerald/40 transition-all duration-200"
+              >
                 Read the Docs →
-              </button>
+              </Link>
             </motion.div>
           </div>
 
