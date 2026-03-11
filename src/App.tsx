@@ -9,6 +9,7 @@ import ProtocolPage from "./pages/Protocol";
 import DevelopersPage from "./pages/Developers";
 import GovernancePage from "./pages/Governance";
 import DocsPage from "./pages/Docs";
+import DocArticlePage from "./pages/DocArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/developers" element={<DevelopersPage />} />
           <Route path="/governance" element={<GovernancePage />} />
           <Route path="/docs" element={<DocsPage />} />
+          <Route path="/docs/:slug" element={<DocArticlePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

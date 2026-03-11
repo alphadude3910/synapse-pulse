@@ -14,16 +14,16 @@ const footerLinks = {
     { label: "Treasury", href: "/governance" },
   ],
   Documentation: [
-    { label: "Getting Started", href: "/docs" },
-    { label: "SDK Reference", href: "/developers" },
-    { label: "API Docs", href: "/developers" },
-    { label: "Examples", href: "/docs" },
+    { label: "Getting Started", href: "/docs/installation-and-setup" },
+    { label: "SDK Reference", href: "/docs/synapse-class" },
+    { label: "API Docs", href: "/docs/authentication" },
+    { label: "Examples", href: "/docs/ai-agent-marketplace" },
   ],
   Security: [
-    { label: "Audits", href: "/protocol" },
-    { label: "Bug Bounty", href: "/docs" },
-    { label: "Status", href: "/protocol" },
-    { label: "Compliance", href: "/protocol" },
+    { label: "Audits", href: "/docs/audit-reports" },
+    { label: "Bug Bounty", href: "/docs/bug-bounty-program" },
+    { label: "Key Management", href: "/docs/key-management" },
+    { label: "ZK Proofs", href: "/docs/zk-proof-integration" },
   ],
 };
 
