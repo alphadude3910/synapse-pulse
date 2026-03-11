@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen, Code, Terminal, Webhook, Key, Database, Search } from "lucide-react";
 import { useState } from "react";
+import PageLayout from "@/components/PageLayout";
 
 const docCategories = [
   {
@@ -90,8 +91,8 @@ const DocsPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background grain">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <PageLayout>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-emerald transition-colors mb-12"
@@ -186,7 +187,7 @@ const DocsPage = () => {
           ))}
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

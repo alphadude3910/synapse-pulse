@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Vote, Shield, Users, Landmark } from "lucide-react";
+import PageLayout from "@/components/PageLayout";
 
 const proposals = [
   {
@@ -46,8 +47,8 @@ const stats = [
 
 const GovernancePage = () => {
   return (
-    <div className="min-h-screen bg-background grain">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <PageLayout>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-emerald transition-colors mb-12"
@@ -134,7 +135,6 @@ const GovernancePage = () => {
                 </span>
                 <span className="ml-auto">Deadline: {proposal.deadline}</span>
               </div>
-              {/* Progress bar */}
               <div className="mt-3 h-1.5 rounded-full bg-muted overflow-hidden">
                 <div
                   className="h-full rounded-full bg-emerald"
@@ -151,7 +151,7 @@ const GovernancePage = () => {
           ))}
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 
