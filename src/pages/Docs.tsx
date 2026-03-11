@@ -4,6 +4,9 @@ import { ArrowLeft, BookOpen, Code, Terminal, Webhook, Key, Database, Search } f
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 
+const slugify = (text: string) =>
+  text.toLowerCase().replace(/[&]/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const docCategories = [
   {
     icon: BookOpen,
@@ -174,10 +177,13 @@ const DocsPage = () => {
                   <ul className="divide-y divide-glass-border/50">
                     {cat.articles.map((article) => (
                       <li key={article}>
-                        <button className="w-full text-left py-3 text-sm text-muted-foreground hover:text-emerald transition-colors flex items-center gap-2">
+                        <Link
+                          to={`/docs/${slugify(article)}`}
+                          className="w-full text-left py-3 text-sm text-muted-foreground hover:text-emerald transition-colors flex items-center gap-2"
+                        >
                           <span className="w-1 h-1 rounded-full bg-emerald/40" />
                           {article}
-                        </button>
+                        </Link>
                       </li>
                     ))}
                   </ul>
