@@ -4,7 +4,7 @@ import { ArrowLeft, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 
-const installCode = `npm install @synapse/sdk`;
+const installCode = `pip install synapseai-bridge`;
 
 const quickStart = `import { Synapse } from "@synapse/sdk";
 
