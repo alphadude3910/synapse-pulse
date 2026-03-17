@@ -130,11 +130,11 @@ const GovernancePage = () => {
           <p className="text-muted-foreground mb-6">
             Synapse AI is built for developers. Tell us what you need and we will build it.
           </p>
-          
+          <a
             href="mailto:hello@synapseai.dev"
             className="inline-flex items-center px-6 py-3 rounded-lg bg-emerald text-background text-sm font-bold hover:brightness-110 transition-all duration-200"
           >
-           Share feedback &rarr;
+            Share feedback
           </a>
         </motion.div>
       </div>
