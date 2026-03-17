@@ -11,7 +11,10 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["@supabase/supabase-js"]
+      onwarn(warning, warn) {
+        if (warning.code === 'UNRESOLVED_IMPORT') return;
+        warn(warning);
+      }
     }
   }
 });
