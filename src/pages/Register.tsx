@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import PageLayout from '@/components/PageLayout'
+import { motion } from 'framer-motion'
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -8,7 +10,7 @@ export default function Register() {
     name: '', endpoint: '', capabilities: '', email: ''
   })
   const [result, setResult] = useState<any>(null)
-  const [error, setError] = useState('')  
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,76 +62,73 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-2">Register your agent</h1>
-        <p className="text-gray-400 mb-8">Get discovered by other agents on the Synapse network.</p>
+    <PageLayout>
+      <div className="max-w-lg mx-auto px-4 py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-xs font-mono text-emerald uppercase tracking-widest mb-4 block">
+            Registry
+          </span>
+          <h1 className="heading-xl text-gradient-white mb-3">Register your agent</h1>
+          <p className="body-lg mb-10">
+            Get discovered by other agents on the Synapse network.
+          </p>
 
-        {result ? (
-          <div className="bg-green-900 border border-green-500 rounded-lg p-6">
-            <h2 className="text-green-400 font-bold text-lg mb-4">Agent registered successfully</h2>
-            <p className="text-sm text-gray-300 mb-2">Agent ID</p>
-            <p className="font-mono text-xs bg-black p-3 rounded mb-4 break-all">{result.agentId}</p>
-            <p className="text-sm text-gray-300 mb-2">API Key — save this now, you won't see it again</p>
-            <p className="font-mono text-xs bg-black p-3 rounded break-all">{result.apiKey}</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Agent name</label>
-              <input
-                type="text"
-                required
-                placeholder="my-translation-agent"
-                value={form.name}
-                onChange={e => setForm({...form, name: e.target.value})}
-                className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-purple-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Endpoint URL</label>
-              <input
-                type="url"
-                required
-                placeholder="https://myagent.com/api"
-                value={form.endpoint}
-                onChange={e => setForm({...form, endpoint: e.target.value})}
-                className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-purple-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Capabilities (comma separated)</label>
-              <input
-                type="text"
-                required
-                placeholder="translate, summarize, classify"
-                value={form.capabilities}
-                onChange={e => setForm({...form, capabilities: e.target.value})}
-                className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-purple-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Your email</label>
-              <input
-                type="email"
-                required
-                placeholder="you@example.com"
-                value={form.email}
-                onChange={e => setForm({...form, email: e.target.value})}
-                className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-purple-500"
-              />
-            </div>
-            {error && <p className="text-red-400 text-sm">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded transition-colors disabled:opacity-50"
+          {result ? (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass rounded-xl p-6 border border-emerald/30"
             >
-              {loading ? 'Registering...' : 'Register Agent'}
-            </button>
-          </form>
-        )}
+              <span className="text-xs font-mono text-emerald uppercase tracking-widest mb-4 block">
+                Agent registered successfully
+              </span>
+              <p className="text-sm text-muted-foreground mb-2">Agent ID</p>
+              <p className="font-mono text-xs glass p-3 rounded-lg mb-4 break-all text-foreground">
+                {result.agentId}
+              </p>
+              <p className="text-sm text-muted-foreground mb-2">
+                API Key — save this now, you won't see it again
+              </p>
+              <p className="font-mono text-xs glass p-3 rounded-lg break-all text-emerald">
+                {result.apiKey}
+              </p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {[
+                { label: 'Agent name', key: 'name', type: 'text', placeholder: 'my-translation-agent' },
+                { label: 'Endpoint URL', key: 'endpoint', type: 'url', placeholder: 'https://myagent.com/api' },
+                { label: 'Capabilities (comma separated)', key: 'capabilities', type: 'text', placeholder: 'translate, summarize, classify' },
+                { label: 'Your email', key: 'email', type: 'email', placeholder: 'you@example.com' },
+              ].map(field => (
+                <div key={field.key}>
+                  <label className="block text-sm text-muted-foreground mb-1">{field.label}</label>
+                  <input
+                    type={field.type}
+                    required
+                    placeholder={field.placeholder}
+                    value={form[field.key as keyof typeof form]}
+                    onChange={e => setForm({...form, [field.key]: e.target.value})}
+                    className="w-full glass rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-emerald/40 transition-all"
+                  />
+                </div>
+              ))}
+              {error && <p className="text-red-400 text-sm">{error}</p>}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full px-4 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all duration-200 disabled:opacity-50"
+              >
+                {loading ? 'Registering...' : 'Register Agent'}
+              </button>
+            </form>
+          )}
+        </motion.div>
       </div>
-    </div>
+    </PageLayout>
   )
 }
