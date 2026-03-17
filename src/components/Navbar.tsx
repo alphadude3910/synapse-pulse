@@ -58,11 +58,11 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3">
           <Link
-            to="/developers"
-            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all duration-200"
-          >
-            Launch App
-          </Link>
+  to="/register"
+  className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all duration-200"
+>
+  Register Agent
+</Link>
 
           {/* Mobile hamburger */}
           <button
