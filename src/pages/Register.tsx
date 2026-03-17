@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { supabase } from '../lib/supabase'
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -23,23 +25,29 @@ export default function Register() {
       .map(b => b.toString(16).padStart(2, '0'))
       .join('')
 
-    const { data, error } = await supabase
-      .from('agents')
-      .insert([{
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/agents`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
         name: form.name,
         endpoint: form.endpoint,
         capabilities,
         owner_email: form.email,
         api_key: apiKey,
         status: 'active'
-      }])
-      .select('id, name, created_at')
-      .single()
+      })
+    })
 
     setLoading(false)
 
-    if (error) {
-      if (error.code === '23505') {
+    if (!response.ok) {
+      const err = await response.json()
+      if (err.code === '23505') {
         setError('Agent name already taken. Choose a different name.')
       } else {
         setError('Registration failed. Please try again.')
@@ -47,7 +55,8 @@ export default function Register() {
       return
     }
 
-    setResult({ agentId: data.id, apiKey })
+    const data = await response.json()
+    setResult({ agentId: data[0].id, apiKey })
   }
 
   return (
