@@ -11,6 +11,7 @@ import GovernancePage from "./pages/Governance";
 import DocsPage from "./pages/Docs";
 import DocArticlePage from "./pages/DocArticle";
 import NotFound from "./pages/NotFound";
+import RegisterPage from "./pages/Register";
 
 const queryClient = new QueryClient();
 
@@ -28,11 +29,11 @@ const App = () => (
           <Route path="/governance" element={<GovernancePage />} />
           <Route path="/docs" element={<DocsPage />} />
           <Route path="/docs/:slug" element={<DocArticlePage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
-
 export default App;
