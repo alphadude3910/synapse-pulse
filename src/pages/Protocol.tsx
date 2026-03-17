@@ -8,37 +8,37 @@ const sections = [
     icon: Layers,
     title: "Architecture",
     description:
-      "Synapse is built on a modular, layered architecture. The base layer handles agent identity via decentralized identifiers (DIDs). The communication layer manages encrypted, authenticated message passing. The settlement layer provides instant, verifiable value transfers between any two agents.",
+      "Synapse AI is a registry and discovery layer for AI agents. Agents register themselves with a unique identity, declare their capabilities, and become discoverable by other agents and developers. The registry is built on a simple, fast REST API — no blockchain, no tokens, no complexity.",
   },
   {
     icon: Shield,
-    title: "Security Model",
+    title: "Agent identity",
     description:
-      "All inter-agent communication is end-to-end encrypted using hybrid cryptography (X25519 + AES-256-GCM). Identity verification leverages zero-knowledge proofs, ensuring agents can authenticate without revealing sensitive metadata. Every transaction is recorded on an append-only ledger with cryptographic integrity guarantees.",
+      "Every agent registered on Synapse AI receives a unique UUID as its permanent identifier. Agents also receive an API key for authenticated updates and management. This identity layer ensures every agent on the network is uniquely addressable and verifiable.",
   },
   {
     icon: Zap,
-    title: "Performance",
+    title: "Discovery",
     description:
-      "The protocol achieves sub-12ms P99 latency for settlement finality and supports sustained throughput of 10M transactions per second. This is accomplished through a novel sharded consensus mechanism that parallelizes verification across validator nodes.",
+      "Any agent or developer can search the Synapse AI registry by capability. Looking for an agent that can translate, summarize, or classify? Query the registry and get back a list of verified, active agents instantly. This is the DNS layer the agent internet has been missing.",
   },
   {
     icon: Globe,
     title: "Interoperability",
     description:
-      "Synapse is designed to be agent-framework agnostic. Whether your agents are built on OpenAI, Anthropic, Google AI, LangChain, or custom frameworks, Synapse provides a universal communication and settlement interface that works across all platforms.",
+      "Synapse AI is completely framework agnostic. Whether your agents are built on OpenAI, Anthropic, LangChain, CrewAI, AutoGen, or custom infrastructure — any agent with an HTTP endpoint can register and be discovered. One registry for the entire agent ecosystem.",
   },
   {
     icon: Lock,
-    title: "Tokenomics",
+    title: "Trust layer",
     description:
-      "The SYNAPSE token powers the network's incentive layer. Validators stake tokens to participate in consensus, agents pay micro-fees for settlement (subsidized for the first 1M transactions), and governance proposals require token-weighted voting.",
+      "Registered agents carry a verified status indicating they have been actively health-checked and are reachable. Future versions of Synapse AI will add trust scoring, audit logs, and permission scopes — building the full security layer the agent economy needs.",
   },
   {
     icon: FileCode,
     title: "Roadmap",
     description:
-      "Q1 2026: Mainnet launch with core settlement. Q2 2026: Multi-chain bridge support (Ethereum, Solana, Arbitrum). Q3 2026: Decentralized agent registry with reputation scoring. Q4 2026: DAO governance transition and community treasury activation.",
+      "v1.0: Agent registration and discovery (live now). v1.1: Health monitoring and verified status badges. v1.2: Trust scoring between agents. v1.3: Permission scopes and audit logs. v2.0: Agent-to-agent billing layer — Stripe for agents.",
   },
 ];
 
@@ -63,11 +63,11 @@ const ProtocolPage = () => {
             Protocol
           </span>
           <h1 className="heading-xl mb-6 text-gradient-white">
-            How Synapse Works
+            How Synapse AI works
           </h1>
           <p className="body-lg max-w-2xl mb-16">
-            A deep dive into the architecture, security model, and economics
-            that power the agentic web's universal settlement layer.
+            A simple, powerful registry that gives every AI agent an identity
+            and makes it discoverable by the rest of the agent internet.
           </p>
         </motion.div>
 
