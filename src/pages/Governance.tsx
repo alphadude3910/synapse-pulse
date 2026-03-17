@@ -1,48 +1,46 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Vote, Shield, Users, Landmark } from "lucide-react";
+import { ArrowLeft, GitPullRequest, MessageSquare, Users, Rocket } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
-const proposals = [
+const roadmap = [
   {
-    id: "SYN-042",
-    title: "Increase validator stake minimum to 50,000 SYN",
-    status: "Active",
-    votesFor: 847293,
-    votesAgainst: 231044,
-    deadline: "Mar 15, 2026",
+    id: "v1.0",
+    title: "Agent registration and discovery",
+    status: "Live",
+    description: "Register any agent with a name, endpoint, and capabilities. Discover agents by capability via REST API.",
   },
   {
-    id: "SYN-041",
-    title: "Allocate 2% treasury to developer grants program",
-    status: "Passed",
-    votesFor: 1203948,
-    votesAgainst: 89012,
-    deadline: "Mar 01, 2026",
+    id: "v1.1",
+    title: "Health monitoring and verified badges",
+    status: "Building",
+    description: "Synapse AI pings every registered agent regularly. Active agents get a verified badge. Offline agents are flagged automatically.",
   },
   {
-    id: "SYN-040",
-    title: "Reduce settlement fee from 0.001% to 0.0005%",
-    status: "Passed",
-    votesFor: 993210,
-    votesAgainst: 412039,
-    deadline: "Feb 18, 2026",
+    id: "v1.2",
+    title: "Trust scoring between agents",
+    status: "Planned",
+    description: "Agents build reputation scores based on uptime, response quality, and peer reviews. Discover only the most trusted agents.",
   },
   {
-    id: "SYN-039",
-    title: "Add Solana bridge support to cross-chain module",
-    status: "Rejected",
-    votesFor: 342910,
-    votesAgainst: 678031,
-    deadline: "Feb 05, 2026",
+    id: "v1.3",
+    title: "Permission scopes and audit logs",
+    status: "Planned",
+    description: "Agents declare what they can and cannot do. Every interaction is logged for compliance and enterprise use cases.",
+  },
+  {
+    id: "v2.0",
+    title: "Agent billing layer",
+    status: "Planned",
+    description: "When Agent A uses Agent B's service, Synapse AI handles the billing. Stripe for agents — automated, transparent, instant.",
   },
 ];
 
 const stats = [
-  { icon: Users, label: "Token Holders", value: "48,291" },
-  { icon: Vote, label: "Proposals Voted", value: "42" },
-  { icon: Landmark, label: "Treasury", value: "$12.4M" },
-  { icon: Shield, label: "Validators", value: "1,247" },
+  { icon: Users, label: "Registered agents", value: "Growing" },
+  { icon: GitPullRequest, label: "API version", value: "v1.0" },
+  { icon: MessageSquare, label: "Community", value: "Open" },
+  { icon: Rocket, label: "Status", value: "Live" },
 ];
 
 const GovernancePage = () => {
@@ -63,20 +61,18 @@ const GovernancePage = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="text-xs font-mono text-emerald uppercase tracking-widest mb-4 block">
-            Governance
+            Roadmap
           </span>
           <h1 className="heading-xl mb-6 text-gradient-white">
-            Community-Led Protocol
+            Where we are going
           </h1>
           <p className="body-lg max-w-2xl mb-16">
-            Synapse is governed by its community through on-chain proposals and
-            token-weighted voting. Every protocol upgrade is decided
-            transparently.
+            Synapse AI is building the trust and identity layer for the agent
+            internet. Here is exactly what we are building and when.
           </p>
         </motion.div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -92,64 +88,55 @@ const GovernancePage = () => {
           ))}
         </div>
 
-        {/* Proposals */}
-        <h2 className="heading-md text-foreground mb-6">Recent Proposals</h2>
+        <h2 className="heading-md text-foreground mb-6">Product roadmap</h2>
         <div className="space-y-4">
-          {proposals.map((proposal, i) => (
+          {roadmap.map((item, i) => (
             <motion.div
-              key={proposal.id}
+              key={item.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
               className="glass rounded-xl p-5 sm:p-6 hover:border-emerald/30 transition-all duration-300"
             >
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                <span className="text-xs font-mono text-data-blue">{proposal.id}</span>
+                <span className="text-xs font-mono text-data-blue">{item.id}</span>
                 <h3 className="text-sm font-semibold text-foreground flex-1">
-                  {proposal.title}
+                  {item.title}
                 </h3>
-                <span
-                  className={`text-xs font-mono px-2 py-1 rounded-full shrink-0 ${
-                    proposal.status === "Active"
-                      ? "bg-emerald/10 text-emerald"
-                      : proposal.status === "Passed"
-                      ? "bg-data-blue/10 text-data-blue"
-                      : "bg-destructive/10 text-destructive"
-                  }`}
-                >
-                  {proposal.status}
+                <span className={`text-xs font-mono px-2 py-1 rounded-full shrink-0 ${
+                  item.status === "Live"
+                    ? "bg-emerald/10 text-emerald"
+                    : item.status === "Building"
+                    ? "bg-data-blue/10 text-data-blue"
+                    : "bg-muted text-muted-foreground"
+                }`}>
+                  {item.status}
                 </span>
               </div>
-              <div className="flex items-center gap-6 text-xs text-muted-foreground">
-                <span>
-                  For:{" "}
-                  <span className="text-emerald font-mono">
-                    {proposal.votesFor.toLocaleString()}
-                  </span>
-                </span>
-                <span>
-                  Against:{" "}
-                  <span className="text-destructive font-mono">
-                    {proposal.votesAgainst.toLocaleString()}
-                  </span>
-                </span>
-                <span className="ml-auto">Deadline: {proposal.deadline}</span>
-              </div>
-              <div className="mt-3 h-1.5 rounded-full bg-muted overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-emerald"
-                  style={{
-                    width: `${
-                      (proposal.votesFor /
-                        (proposal.votesFor + proposal.votesAgainst)) *
-                      100
-                    }%`,
-                  }}
-                />
-              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-16 glass rounded-xl p-8 text-center border border-emerald/20"
+        >
+          <h2 className="heading-md text-gradient-emerald mb-3">Have a feature request?</h2>
+          <p className="text-muted-foreground mb-6">
+            Synapse AI is built for developers. Tell us what you need and we will build it.
+          </p>
+          
+            href="mailto:hello@synapseai.dev"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-emerald text-background text-sm font-bold hover:brightness-110 transition-all duration-200"
+          >
+            Share feedback →
+          </a>
+        </motion.div>
       </div>
     </PageLayout>
   );
