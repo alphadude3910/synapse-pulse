@@ -8,7 +8,7 @@ export default function Register() {
     name: '', endpoint: '', capabilities: '', email: ''
   })
   const [result, setResult] = useState<any>(null)
-  const [error, setError] = useState('')
+  const [error, setError] = useState('')  
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
